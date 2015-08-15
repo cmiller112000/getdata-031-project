@@ -104,20 +104,20 @@ features, and activity mapping files.
  * UCI HAR Dataset/activity_labels.txt
  * UCI HAR Dataset/features.txt
  * UCI HAR Dataset/test
-    * subject_test.txt
-    * X_test.txt
-    * y_test.txt
+     * subject_test.txt
+     * X_test.txt
+     * y_test.txt
  * UCI HAR Dataset/train
-    * subject_train.txt
-    * X_train.txt
-    * y_train.txt
+     * subject_train.txt
+     * X_train.txt
+     * y_train.txt
 5. created descriptive names for the activity performed text - from activity_labels.txt
 6. created descriptive column names for all the feature measures - from features.txt
 7. combined the all the associated files related to the testing data to create a
 combined data frame.  I repeated this with the training data. The purpose in 
 combining in this order was to maintain the row number dependencies between the
 data files since, with the exception of the activity mapping file, there was no 
-'key' data to join them on - from X_t*.txt, y_t*.txt, subject_t*.txt, features.txt
+'key' data to join them on - from X\_\*.txt , y\_\*.txt , subject\_\*.txt, features.txt
 8. Once the testing and training data frames were built, I combined the data from
 the testing and training data frames into a single combined data frame
 9. renamed the feature columns to have more descriptive names
