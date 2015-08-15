@@ -92,23 +92,35 @@ They would have been eventually filtered out anyway.
 </p>
 My process flow was as follows:
 
-1. creates supporting directories based on R project working directory:
+1. if the dataset root directory (UCI HAR Dataset) does not exist in the project directory, I create
+supporting directories based on R project working directory:
  * downloadDir - ../getdata-031-project-download - zip file downloads and unzips to here
  * dataDir - ./data - output files and generated *.md include files created here
-2. download dataset file from source website
-3. unzip file into non-project level directory.
+2. download dataset file from source website:
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+3. unzip file into non-project level directory (../getdata-031-project-download).
 4. read in all the test and training 'x'/'y' data files, as well as the subjects,
-features, and activity mapping files.
-5. created descriptive names for the activity performed text
-6. created descriptive column names for all the feature measures.
+features, and activity mapping files. 
+ * UCI HAR Dataset/activity_labels.txt
+ * UCI HAR Dataset/features.txt
+ * UCI HAR Dataset/test
+  * subject_test.txt
+  * X_test.txt
+  * y_test.txt
+ * UCI HAR Dataset/train
+  * subject_train.txt
+  * X_train.txt
+  * y_train.txt
+5. created descriptive names for the activity performed text - from activity_labels.txt
+6. created descriptive column names for all the feature measures - from features.txt
 7. combined the all the associated files related to the testing data to create a
 combined data frame.  I repeated this with the training data. The purpose in 
 combining in this order was to maintain the row number dependencies between the
 data files since, with the exception of the activity mapping file, there was no 
-'key' data to join them on.  
+'key' data to join them on - from X_t*.txt, y_t*.txt, subject_t*.txt, features.txt
 8. Once the testing and training data frames were built, I combined the data from
 the testing and training data frames into a single combined data frame
-9. renamed the columns to have more descriptive names
+9. renamed the feature columns to have more descriptive names
 10. partitioned the data frame to only include the requested '-mean()' and '-std()'
 features.
 11. replaced the activity id number from the y files with the mapped descriptive
@@ -129,7 +141,7 @@ names, data types, and a column description based on the descriptive column name
 2. Wrote this data dictionary to a codebook include file in markdown table syntax.
 3. wrote a readme include file containing collected information on the data set(i.e 
 download URL, and download date/time), as well as generated acknowledgements from 
-the analyzed dataset readme file.
+the analyzed dataset  * UCI HAR Dataset/README.txt file.
 
 
 # Data Reference
