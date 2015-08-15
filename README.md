@@ -33,10 +33,10 @@ The concept of 'Tidy Data' was discussed in a paper by Hadley Wickham:
 
 http://www.jstatsoft.org/v59/i10/paper 
 
-It is basically a process of cleaning a data set such that it be used to easily 
-"manipulate, model, and visualize".  It is not a full blown data normalization 
+It is basically a process of cleaning a data set such that it can be used to easily 
+"manipulate, model, and visualize" your data.  It is not a full blown data normalization 
 process most database modelers may understand.  It is enough 'tidying' to make 
-the data usable from an analysis standpoiknt.  As outlined in the paper above, a
+the data usable from an analysis standpoint.  As outlined in the paper above, a
 Tidy Data set is one that abides by the following principles:
 
 1. Each variable forms a column
@@ -48,13 +48,14 @@ Tidy Data set is one that abides by the following principles:
 
 Human wearable devices, such as the Fit-Bit are big these days.  The authors of 
 this data set collected and summarized measurements collected from 30 volunteers
-in the 19-48 year age range wearing a Samsung Galaxy S II smartphone using its
-embedded accelerometer and gyroscope.  it was attached to the subjects waist as the
+in the 19-48 year age range, wearing a Samsung Galaxy S II smartphone using its
+embedded accelerometer and gyroscope.  It was attached to a subject's waist as he
 performed 6 activities (standing, sitting, laying, walking, walking upstairs, 
 walking downstairs).  This data was aggregated, providing mean and standard 
 deviation summaries of numerous acceleration, velocity, magnitude, etc. measurements.
 Please see the README.txt and features_info.txt files provided in the source 
-dataset for further information on the dataset and the experiments behind them.
+dataset for further information on the dataset and the experiments behind them, as
+well as a detailed explanation on how the measures were collected and aggregated.
 
 # Required Steps
 
@@ -68,22 +69,27 @@ dataset for further information on the dataset and the experiments behind them.
 <p>
 For this project, I automated the process end to end, from downloading the zip file
 referenced below, unzipping, cleaning, reshaping and summarizing the required
-selected data measures to creating the output mean summary by subject, activity
-and measure.  In addition, I used the final data frame and interim set variables
-to automatically generate the data dictionary for the codebook as well as an
-acknowledgement section to include in the readme file.
+selected data measures, to creating the output measurement mean summary by subject
+and activity.  In addition, I used the final data frame and interim set variables
+to automatically generate the data dictionary for the project codebook as well as an
+acknowledgement section to include in the project readme file.
 </>
 <p>
-In selecting the measures to include, I following the instructions to only include
+In selecting the measures to include, I followed the instructions to only include
 the mean and standard deviation measures.  To identify them, I used a regex
-expression to look only for measures with the pattern -mean() or -std().  While
-there were other measures with mean in the name (i.e. meanFreq and some angles 
+expression to look only for measures with the pattern -mean() or -std() in the name.
+While there were other measures with mean in the name (i.e. meanFreq and some angles 
 using means), I chose not to use them.  The meanFreq was defined in the features_info.txt 
-file as: Weighted average of the frequency components to obtain a mean frequency.
+file as: "Weighted average of the frequency components to obtain a mean frequency".
 This is a weighted average and not a mean of a real measurement. Also the other
 references dealt with angles using other mean values and not means themselves.
 </p>
-
+<p>
+In addition to the provided x,y,subject, etc files, there are 'Inertial Signals' 
+subdirectories under the train and test subdirectories.  I did not include these
+files since the ultimate instructions were to include only the mean and std measures.
+They would have been eventually filtered out anyway.
+</p>
 My process flow was as follows:
 
 1. creates supporting directories based on R project working directory:

@@ -34,44 +34,57 @@ library(httr)
 library(dplyr)
 library(reshape2)
 #
+# some global variable, regardless if the dataset alreadys exists or if we need
+# to download it
+#
+downloadUrl = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+inputDirRoot = "UCI HAR Dataset"
+if (file.exists(inputDirRoot)) {
+# data set directory already exists in our project directory, use the files from 
+# there.
+  downloadDate = file.info(inputDirRoot)$mtime
+} else {
+# otherwise if dataset directory does not exist in our project directory, create a 
+# subdiretory outside our project directory dow download, and unzip it.
+#
+#
 # Create data download directory outside of project directory so we don't include
 # in GIT repository
 #
-downloadDir = "../getdata-031-project-download"
-if (!file.exists(downloadDir)) {
-  dir.create(downloadDir);
-}
-
+  downloadDir = "../getdata-031-project-download"
+  if (!file.exists(downloadDir)) {
+    dir.create(downloadDir);
+  }
+  
 #
 # download zip file, and record the download date.  if file exists already
 # pick up creation date of zip file
 #
-localzipfile = paste(downloadDir,"getdata_projectfiles.zip",sep="/")
+  localzipfile = paste(downloadDir,"getdata_projectfiles.zip",sep="/")
 #
-downloadUrl = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-if (!file.exists(localzipfile)) {
-  download.file(downloadUrl,
-                destfile=localzipfile,mode="wb")
-  downloadDate = date()
-  downloadDate
-} else {
-  downloadDate = file.info(localzipfile)$mtime
-}
+  if (!file.exists(localzipfile)) {
+    download.file(downloadUrl,
+                  destfile=localzipfile,mode="wb")
+    downloadDate = date()
+    downloadDate
+  } else {
+    downloadDate = file.info(localzipfile)$mtime
+  }
 #
 # unzip the downloaded zip file
 #
-inputDirRoot = paste(downloadDir,"UCI HAR Dataset",sep="/")
 #
-if (file.exists(localzipfile) ) {
-  if (!file.exists(inputDirRoot)) {
-    unzip(localzipfile,overwrite = TRUE,exdir=downloadDir)
+  if (file.exists(localzipfile) ) {
     if (!file.exists(inputDirRoot)) {
-      stop(paste("Failed to unzip", localzipfile))
-    }      
+      unzip(localzipfile,overwrite = TRUE,exdir=downloadDir)
+      if (!file.exists(inputDirRoot)) {
+        stop(paste("Failed to unzip", localzipfile))
+      }      
+    }
+  } else {
+    stop("Cannot find unzip data directory")
   }
-} else {
-  stop("Cannot find unzip data directory")
-}
+}  
 #
 # setup variable reference to root input data directory from zip file
 # also create our output data directory to hold final output files
