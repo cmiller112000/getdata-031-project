@@ -1,7 +1,7 @@
 # Dataset Source 
 
 * URL: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
-* Download Date: 2015-08-15 11:30:47
+* Download Date: Sat Aug 15 13:40:31 2015
 
 # Acknowledgments:
 

@@ -4,6 +4,11 @@
 #     Cheryl Miller
 #     8/15/15
 #
+# Libraries Required:
+# library(httr)
+# library(dplyr)
+# library(reshape2)
+#
 # Data Source: 
 # https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
 #
@@ -60,6 +65,9 @@ inputDirRoot = paste(downloadDir,"UCI HAR Dataset",sep="/")
 if (file.exists(localzipfile) ) {
   if (!file.exists(inputDirRoot)) {
     unzip(localzipfile,overwrite = TRUE,exdir=downloadDir)
+    if (!file.exists(inputDirRoot)) {
+      stop(paste("Failed to unzip", localzipfile))
+    }      
   }
 } else {
   stop("Cannot find unzip data directory")
@@ -96,7 +104,7 @@ subj_train <- read.table(paste(inputDirRoot,"train/subject_train.txt",sep="/"),s
 # each line in the x,y,subj, and features files are associated with each other by
 # line number
 #
-activity <- read.table(paste0(inputDirRoot,"/activity_labels.txt"),stringsAsFactors = FALSE)
+activity <- read.table(paste(inputDirRoot,"activity_labels.txt",sep="/"),stringsAsFactors = FALSE)
 colnames(activity) = c("activityid","activityname")
 activity$activityname <- gsub("(^|[[:space:]])([[:alpha:]])", "\\1\\U\\2", tolower(gsub('_',' ',activity$activityname)), perl=TRUE)
 
@@ -185,7 +193,7 @@ d1_tbl <- tbl_df(part_data)
 # it better (me))
 #
 d1_tbl_mean <- (d1_tbl %>% group_by(subject_performing_action, activity_performed) %>% summarise_each(funs(mean)))
-write.table(d1_tbl_mean, paste(dataDir,"output_wide.dat",sep="/"), quote = FALSE, row.names = FALSE, col.names = TRUE)
+write.table(d1_tbl_mean, paste(dataDir,"output_wide.txt",sep="/"), quote = FALSE, row.names = FALSE, col.names = TRUE)
 write.table(d1_tbl_mean, paste(dataDir,"output_wide.csv",sep="/"), quote = FALSE, row.names = FALSE, col.names = TRUE,sep=",")
 
 # the following code is primarily for the author to auto-generate some required information
