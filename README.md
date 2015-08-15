@@ -133,7 +133,7 @@ a ./data/output_wide.csv version for those who perfer csv format.
 
 <p>
 In addition to tidying and creating a summarized dataset in the steps above, I also
-performed the following steps to auto-generated some of the associated documentation.
+performed the following steps to auto-generate some of the associated documentation.
 </p>
 
 1. created a data dictionary from the final output data frame, containing the column
@@ -141,7 +141,7 @@ names, data types, and a column description based on the descriptive column name
 2. Wrote this data dictionary to a codebook include file in markdown table syntax.
 3. wrote a readme include file containing collected information on the data set(i.e 
 download URL, and download date/time), as well as generated acknowledgements from 
-the analyzed dataset  * UCI HAR Dataset/README.txt file.
+the analyzed datasets UCI HAR Dataset/README.txt file.
 
 
 # Data Reference
