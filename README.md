@@ -104,13 +104,13 @@ features, and activity mapping files.
  * UCI HAR Dataset/activity_labels.txt
  * UCI HAR Dataset/features.txt
  * UCI HAR Dataset/test
-   * subject_test.txt
-   * X_test.txt
-   * y_test.txt
+  * subject_test.txt
+  * X_test.txt
+  * y_test.txt
  * UCI HAR Dataset/train
-   * subject_train.txt
-   * X_train.txt
-   * y_train.txt
+  * subject_train.txt
+  * X_train.txt
+  * y_train.txt
 5. created descriptive names for the activity performed text - from activity_labels.txt
 6. created descriptive column names for all the feature measures - from features.txt
 7. combined the all the associated files related to the testing data to create a
